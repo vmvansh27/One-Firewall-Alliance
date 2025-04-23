@@ -58,10 +58,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/deals", dealRoutes);
 
 // Serve Frontend (after the API routes)
-app.use(express.static(path.join(__dirname, "../frontend/dist")));  // Note: "../frontend/dist"
+app.use(express.static(path.join(__dirname, "./frontend/dist")));  // Note: "../frontend/dist"
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+    res.sendFile(path.join(__dirname, "./frontend/dist/index.html"));
 });
 
 // Connect MongoDB
