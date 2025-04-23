@@ -1,4 +1,3 @@
-// src/routes/dealRoutes.js
 import express from "express";
 import jwt from "jsonwebtoken";
 import Deal from "../models/Deal.js";
@@ -49,7 +48,7 @@ router.get("/", verifyToken, async (req, res) => {
 // Get single deal by ID
 router.get("/:id", verifyToken, async (req, res) => {
     try {
-        const deal = await Deal.findById(req.params.id);
+        const deal = await Deal.findById(req.params.id); // Using the dynamic parameter :id
         if (!deal) {
             return res.status(404).json({ message: "Deal not found" });
         }
