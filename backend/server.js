@@ -29,19 +29,24 @@
 // // Start server
 // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";  // Required for serving static files
+import { fileURLToPath } from "url";  // Required to define __dirname in ES modules
 import authRoutes from "./routes/authRoutes.js";
 import dealRoutes from "./routes/dealRoutes.js";
 
+// Initialize environment variables
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Manually define __dirname for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Middleware
 app.use(cors());
@@ -67,5 +72,5 @@ mongoose.connect(process.env.MONGO_URI, {
     .then(() => console.log("MongoDB Connected"))
     .catch((err) => console.error("Mongo Error", err));
 
-// Start server
+// Start server 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
